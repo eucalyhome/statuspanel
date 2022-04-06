@@ -1,0 +1,12 @@
+[Unit]
+Description=m5remocon
+
+[Service]
+WorkingDirectory=/data/statuspanel
+ExecStart=/usr/bin/python3 /data/statuspanel/m5remocon.py
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+

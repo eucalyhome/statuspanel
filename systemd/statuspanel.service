@@ -1,0 +1,12 @@
+[Unit]
+Description=statuspanel
+
+[Service]
+WorkingDirectory=/data/statuspanel
+ExecStart=/usr/bin/python3 /data/statuspanel/statuspanel.py
+Restart=always
+Type=simple
+
+[Install]
+WantedBy=multi-user.target
+
