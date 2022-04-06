@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import json, re, requests
+import json, re, os
+#import requests
 
 class worker(object):
-    def getdata(self,url):
+    def getdata(self,basedir):
         status = 'null'
         outdata = {}
         jsondata = {}
@@ -21,12 +22,21 @@ class worker(object):
         outdata['gpuloadper'] = 0
         outdata['gputempper'] = 0
 
+        datafile_hwdata = basedir + 'hwdata.json'
+        if not os.path.exists(datafile_hwdata):
+            return (status,outdata,jsondata)
         try:
-            response = requests.get(url, timeout=3)
-            bodydata = response.text
-            jsondata = json.loads(bodydata)
+            with open(datafile_hwdata) as f:
+                jsondata = json.load(f)
         except:
             return (status,outdata,jsondata)
+
+#        try:
+#            response = requests.get(url, timeout=3)
+#            bodydata = response.text
+#            jsondata = json.loads(bodydata)
+#        except:
+#            return (status,outdata,jsondata)
 
         status = 'success'
         for primarykey in jsondata['Children'][0]['Children']:

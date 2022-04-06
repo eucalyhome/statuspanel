@@ -26,7 +26,7 @@ import rendercircle
 def main():
     basedir = './'
     ramdiskdir = '/ramdisk/'
-    hwmonitorurl = 'http://172.16.19.1:8085/data.json'
+#    hwmonitorurl = 'http://172.16.19.1:8085/data.json'
 
 #    tktoolkitobject = tktoolkit.tktoolkit()
     ledtoolkitobject = ledtoolkit.worker()
@@ -60,7 +60,8 @@ def main():
     while True:
         statustimenow = int(time.time())
         if statustimenow != statustime:
-            (status,outdata,jsondata) = monitor.getdata(hwmonitorurl)
+#            (status,outdata,jsondata) = monitor.getdata(hwmonitorurl)
+            (status,outdata,jsondata) = monitor.getdata(ramdiskdir)
             if status == 'success':
                 statusstream.load(jsondata)
                 statusstreammain.load(jsondata)
